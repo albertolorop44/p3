@@ -1,0 +1,34 @@
+[
+    {
+      "pregunta": "¿Cuál es el principal cultivo en Extremadura?",
+      "opciones": ["Trigo", "Tomate", "Maíz", "Girasol"],
+      "respuesta": "Tomate"
+    },
+    {
+      "pregunta": "¿Qué cultivo necesita campos inundados para crecer?",
+      "opciones": ["Trigo", "Maíz", "Arroz", "Tomate"],
+      "respuesta": "Arroz"
+    },
+    {
+      "pregunta": "¿Qué tipo de abono se usa comúnmente en el cultivo de tomate?",
+      "opciones": ["Nitrogenado", "Fosfórico", "Potasio", "Orgánico"],
+      "respuesta": "Potasio"
+    },
+    {
+      "pregunta": "¿Qué plaga es más común en los cultivos de maíz?",
+      "opciones": ["Taladro", "Pulgón", "Mosca blanca", "Ácaros"],
+      "respuesta": "Taladro"
+    },
+    {
+      "pregunta": "¿En qué mes suele comenzar la cosecha del tomate en Extremadura?",
+      "opciones": ["Mayo", "Julio", "Septiembre", "Agosto"],
+      "respuesta": "Julio"
+    }
+
+    {
+        "pregunta": "¿Cual es el cultivo que mayor rentabilidad ha dado en los últimos años?",
+        "opciones": ["Trigo", "Tomate", "Maíz", "Girasol"],
+        "respuesta": "Tomate"
+      }
+  ]
+  

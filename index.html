@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agricultura en Extremadura</title>
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="estilo.css">   <!--  Estilos generales -->
+    <link rel="stylesheet" href="juego.css">    <!-- Estilos específicos del juego -->
 </head>
 <body>
     <header>
@@ -16,22 +17,19 @@
         <p>La agricultura en Extremadura es un pilar fundamental de la economía regional. Su clima y suelos fértiles favorecen el cultivo de una gran variedad de productos, entre los que destacan los tomates, el maíz y el arroz.</p>
         <p>Impacto económico: representa aproximadamente el 8% del PIB regional, una cifra muy superior a la media. Genera empleo para más del 20% de la población activa.</p>
         <p>Seguramente se esté preguntando el por qué de una web dedicada a ello.</p>
-        <p>Tengo la suerte de ser parte de una familia donde todos somos agricultores, siguiendo con la tradicción y el oficio que empezaron todos nuestros antepasados.</p>
-        <p>En concreto somos de Miajadas, un pueblo situado en el centro de Extremadura y perteneciente a la provincia de Cáceres. Además dicho pueblo es la Capital Europea Del Tomate.</p>
-        <p>Aunque actualmente me encuentre estudiando en Madrid, nunca dejará de ser una parte de mi el campo ya que es donde me he criado y crecido.</p>
-        <p>Es por ello, que al menos dedicar este proyecto a que conozcais un poco más a cerca de los principales cultivos y un poco de nuestro trabajo.</p>
+        <p>Tengo la suerte de ser parte de una familia donde todos somos agricultores, siguiendo con la tradición y el oficio que empezaron todos nuestros antepasados.</p>
+        <p>En concreto somos de Miajadas, un pueblo situado en el centro de Extremadura y perteneciente a la provincia de Cáceres. Además, dicho pueblo es la Capital Europea del Tomate.</p>
+        <p>Aunque actualmente me encuentre estudiando en Madrid, nunca dejará de ser una parte de mí el campo ya que es donde me he criado y crecido.</p>
+        <p>Es por ello que al menos dedicar este proyecto a que conozcáis un poco más acerca de los principales cultivos y nuestro trabajo.</p>
 
- 
-
-        <img src="tractor1.jpg" width="500">
+        <img src="tractor1.jpg" width="500" alt="Tractor">
         <p>Este soy yo conduciendo uno de nuestros tractores</p>
 
-   
-
         <h3>Principales Cultivos</h3>
-        <p>Para que conozcais algo más sobre nuestro trabajo, quiero que veais los tres cultivos que mayor explotación tenemos como son los tomates, el arroz y el maiz.</p>
+        <p>Para que conozcáis algo más sobre nuestro trabajo, quiero que veáis los tres cultivos que mayor explotación tenemos como son los tomates, el arroz y el maíz.</p>
         <p>Destacar que estos no son los únicos ya que en la zona también es muy popular los olivos, el trigo o el girasol entre otros.</p>
-        <p>Estos son los datos de la última campaña, la 2024. En la tabla podemos ver el cultivo, las hectareas que hemos sembrado y la producción total en toneladas</p>
+        <p>Estos son los datos de la última campaña, la 2024. En la tabla podemos ver el cultivo, las hectáreas que hemos sembrado y la producción total en toneladas:</p>
+
         <table>
             <tr>
                 <th>Producto</th>
@@ -58,12 +56,12 @@
         <p>Aquí te dejo el enlace a cada cultivo para verlo más en profundidad:</p>
         <nav>
             <a href="tomate.html">Tomates</a>
-            <a href="arroz.html">Maíz</a>
-            <a href="maiz.html">Arroz</a>
+            <a href="arroz.html">Arroz</a>
+            <a href="maiz.html">Maíz</a>
         </nav>
 
         <h3>Contacto</h3>
-        <p>Si quieres más información sobre la agricultura en mi zona, puedes dejarmela por aquí y te responderé encantado.</p>
+        <p>Si quieres más información sobre la agricultura en mi zona, puedes dejármela por aquí y te responderé encantado.</p>
         <form>
             <label>Nombre:</label>
             <input type="text" required>
@@ -73,10 +71,150 @@
             <textarea rows="4" required></textarea>
             <input type="submit" value="Enviar">
         </form>
+
+        <!--  Sección del Juego de Preguntas sobre Agricultura -->
+        <div id="quiz-container">
+            <h2>🌾 Quiz de Agricultura</h2>
+            <div id="start-screen">
+                <button id="start-btn">Comenzar Juego</button>
+                <p id="high-score">🏆 High Score: 0</p>
+            </div>
+
+            <div id="quiz-screen">
+                <p id="question">Pregunta aquí...</p>
+                <div id="answers"></div>
+                <p id="score">Puntuación: 0</p>
+            </div>
+
+            <div id="end-screen">
+                <h3>🎉 Juego Finalizado</h3>
+                <p id="final-score">Tu puntuación: 0</p>
+                <button id="restart-btn">Jugar de Nuevo</button>
+            </div>
+        </div>
+        <!--  Fin de la sección del juego -->
     </div>
+
     <footer>
         <p>© 2025 Agricultura en Extremadura</p>
     </footer>
+
+    <!-- Lógica del Juego de Preguntas -->
+    <script>
+        // Elementos del DOM
+        const startBtn = document.getElementById('start-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const startScreen = document.getElementById('start-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const endScreen = document.getElementById('end-screen');
+        const questionEl = document.getElementById('question');
+        const answersEl = document.getElementById('answers');
+        const scoreEl = document.getElementById('score');
+        const finalScoreEl = document.getElementById('final-score');
+        const highScoreEl = document.getElementById('high-score');
+    
+        // Variables del juego
+        let questions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let highScore = localStorage.getItem('highScoreAgricultura') || 0;
+    
+        // Mostrar el High Score al inicio
+        highScoreEl.textContent = `🏆 High Score: ${highScore}`;
+    
+        // Event Listeners
+        startBtn.addEventListener('click', startGame);
+        restartBtn.addEventListener('click', startGame);
+    
+        // Función para iniciar el juego
+        async function startGame() {
+            score = 0;
+            currentQuestionIndex = 0;
+            startScreen.style.display = 'none';
+            endScreen.style.display = 'none';
+            quizScreen.style.display = 'block';
+            scoreEl.textContent = `Puntuación: ${score}`;
+            
+            questions = await fetchQuestions();
+    
+            if (questions.length === 0) {
+                console.error("❌ No se pudieron cargar las preguntas o el archivo está vacío.");
+                endGame();
+                return;
+            }
+    
+            showQuestion();
+        }
+    
+        // Cargar preguntas desde el archivo JSON usando fetch
+        async function fetchQuestions() {
+            try {
+                const response = await fetch('preguntas_agricultura.json');
+                if (!response.ok) throw new Error(`Error al cargar el archivo JSON - Estado: ${response.status}`);
+                
+                const data = await response.json();
+                console.log("✅ Preguntas cargadas:", data);  // 🔍 Verificación en consola
+                return data;
+            } catch (error) {
+                console.error("❌ Error al cargar las preguntas:", error);
+                return [];
+            }
+        }
+    
+        // Mostrar la pregunta actual
+        function showQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                endGame();
+                return;
+            }
+    
+            const currentQuestion = questions[currentQuestionIndex];
+            questionEl.textContent = currentQuestion.pregunta;
+    
+            const answers = [...currentQuestion.opciones];
+            shuffleArray(answers);
+    
+            answersEl.innerHTML = '';
+    
+            answers.forEach(answer => {
+                const btn = document.createElement('button');
+                btn.textContent = answer;
+                btn.onclick = () => selectAnswer(answer, currentQuestion.respuesta);
+                answersEl.appendChild(btn);
+            });
+        }
+    
+        // Manejar la respuesta seleccionada
+        function selectAnswer(selected, correct) {
+            if (selected === correct) {
+                score += 10;
+            }
+            scoreEl.textContent = `Puntuación: ${score}`;
+            currentQuestionIndex++;
+            showQuestion();
+        }
+    
+        // Fin del juego
+        function endGame() {
+            quizScreen.style.display = 'none';
+            endScreen.style.display = 'block';
+            finalScoreEl.textContent = `Tu puntuación: ${score}`;
+    
+            if (score > highScore) {
+                highScore = score;
+                localStorage.setItem('highScoreAgricultura', highScore);
+                highScoreEl.textContent = `🏆 High Score: ${highScore}`;
+            }
+        }
+    
+        // Mezclar respuestas
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    </script>
+    
 </body>
 </html>
-
