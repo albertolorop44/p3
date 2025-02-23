@@ -16,7 +16,6 @@
         <h2>Importancia de la Agricultura en Extremadura</h2>
         <p>La agricultura en Extremadura es un pilar fundamental de la economía regional. Su clima y suelos fértiles favorecen el cultivo de una gran variedad de productos, entre los que destacan los tomates, el maíz y el arroz.</p>
         <p>Impacto económico: representa aproximadamente el 8% del PIB regional, una cifra muy superior a la media. Genera empleo para más del 20% de la población activa.</p>
-        <p>Seguramente se esté preguntando el por qué de una web dedicada a ello.</p>
         <p>Tengo la suerte de ser parte de una familia donde todos somos agricultores, siguiendo con la tradición y el oficio que empezaron todos nuestros antepasados.</p>
         <p>En concreto somos de Miajadas, un pueblo situado en el centro de Extremadura y perteneciente a la provincia de Cáceres. Además, dicho pueblo es la Capital Europea del Tomate.</p>
         <p>Aunque actualmente me encuentre estudiando en Madrid, nunca dejará de ser una parte de mí el campo ya que es donde me he criado y crecido.</p>
@@ -27,7 +26,6 @@
 
         <h3>Principales Cultivos</h3>
         <p>Para que conozcáis algo más sobre nuestro trabajo, quiero que veáis los tres cultivos que mayor explotación tenemos como son los tomates, el arroz y el maíz.</p>
-        <p>Destacar que estos no son los únicos ya que en la zona también es muy popular los olivos, el trigo o el girasol entre otros.</p>
         <p>Estos son los datos de la última campaña, la 2024. En la tabla podemos ver el cultivo, las hectáreas que hemos sembrado y la producción total en toneladas:</p>
 
         <table>
@@ -75,7 +73,7 @@
         <!--  Sección del Juego de Preguntas sobre Agricultura -->
         <div id="quiz-container">
             <h2>🌾 Quiz de Agricultura</h2>
-            <p>Realice este quiz una vez que se haya leido toda la página web</p>
+            <p>Realice este quiz una vez que se haya leído toda la página web</p>
             <div id="start-screen">
                 <button id="start-btn">Comenzar Juego</button>
                 <p id="high-score">🏆 High Score: 0</p>
@@ -88,7 +86,7 @@
             </div>
 
             <div id="end-screen">
-                <h3>🎉 Juego Finalizado</h3>
+                <h3>Juego Finalizado</h3>
                 <p id="final-score">Tu puntuación: 0</p>
                 <button id="restart-btn">Jugar de Nuevo</button>
             </div>
@@ -174,19 +172,33 @@
             answers.forEach(answer => {
                 const btn = document.createElement('button');
                 btn.textContent = answer;
-                btn.onclick = () => selectAnswer(answer, currentQuestion.respuesta);
+                btn.onclick = (event) => selectAnswer(event, answer, currentQuestion.respuesta);
                 answersEl.appendChild(btn);
             });
         }
     
-        // Manejar la respuesta seleccionada
-        function selectAnswer(selected, correct) {
+        // Manejar la respuesta seleccionada con animaciones
+        function selectAnswer(event, selected, correct) {
+            const buttons = document.querySelectorAll('#answers button');
+
+            // Desactiva todos los botones tras seleccionar
+            buttons.forEach(btn => btn.disabled = true);
+
             if (selected === correct) {
+                event.target.classList.add('correct'); // Respuesta Correcta
                 score += 10;
+            } else {
+                event.target.classList.add('incorrect'); // Respuesta Incorrecta
             }
+
+            // Actualiza la puntuación
             scoreEl.textContent = `Puntuación: ${score}`;
-            currentQuestionIndex++;
-            showQuestion();
+
+            // Espera 1 segundo antes de pasar a la siguiente pregunta
+            setTimeout(() => {
+                currentQuestionIndex++;
+                showQuestion();
+            }, 1000);
         }
     
         // Fin del juego
@@ -210,6 +222,6 @@
             }
         }
     </script>
-    
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* 🎮 🌾 Estilos específicos para el Juego de Preguntas */
+/* 🌾 Estilos específicos para el Juego de Preguntas */
 #quiz-container {
     margin-top: 40px;
     padding: 20px;
@@ -49,4 +49,40 @@
 
 #quiz-container p {
     font-size: 1.1rem;
+}
+
+/* Respuesta Correcta: Fondo verde y efecto de rebote */
+.correct {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    animation: correctoAnim 0.5s ease-in-out;
+}
+
+/* Respuesta Incorrecta: Fondo rojo y vibración */
+.incorrect {
+    background-color: #f44336; /* Rojo */
+    color: white;
+    animation: incorrectoAnim 0.5s ease-in-out;
+}
+
+/*Rebote para respuestas correctas */
+@keyframes correctoAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/*Vibración para respuestas incorrectas */
+@keyframes incorrectoAnim {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+/* Desactiva botones después de responder */
+#answers button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
