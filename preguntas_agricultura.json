@@ -25,6 +25,11 @@
       "respuesta": "Julio"
     },  
     {
+        "pregunta": "¿Cuál de las siguientes es una variedad de arroz?",
+        "opciones": ["Negro", "Cuadrado", "Largo", "Paella"],
+        "respuesta": "Largo"
+      }, 
+    {
       "pregunta": "¿Cual es el cultivo que mayor rentabilidad ha dado en los últimos años?",
       "opciones": ["Trigo", "Tomate", "Maíz", "Girasol"],
       "respuesta": "Tomate"

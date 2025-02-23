@@ -75,6 +75,7 @@
         <!--  Sección del Juego de Preguntas sobre Agricultura -->
         <div id="quiz-container">
             <h2>🌾 Quiz de Agricultura</h2>
+            <p>Realice este quiz una vez que se haya leido toda la página web</p>
             <div id="start-screen">
                 <button id="start-btn">Comenzar Juego</button>
                 <p id="high-score">🏆 High Score: 0</p>
@@ -137,12 +138,6 @@
             
             questions = await fetchQuestions();
     
-            if (questions.length === 0) {
-                console.error("❌ No se pudieron cargar las preguntas o el archivo está vacío.");
-                endGame();
-                return;
-            }
-    
             showQuestion();
         }
     
@@ -153,10 +148,10 @@
                 if (!response.ok) throw new Error(`Error al cargar el archivo JSON - Estado: ${response.status}`);
                 
                 const data = await response.json();
-                console.log("✅ Preguntas cargadas:", data);  // 🔍 Verificación en consola
+                console.log("Preguntas cargadas:", data);  
                 return data;
             } catch (error) {
-                console.error("❌ Error al cargar las preguntas:", error);
+                console.error("Error al cargar las preguntas:", error);
                 return [];
             }
         }
