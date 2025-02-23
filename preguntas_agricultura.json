@@ -23,12 +23,11 @@
       "pregunta": "¿En qué mes suele comenzar la cosecha del tomate en Extremadura?",
       "opciones": ["Mayo", "Julio", "Septiembre", "Agosto"],
       "respuesta": "Julio"
-    }
-
+    },  
     {
-        "pregunta": "¿Cual es el cultivo que mayor rentabilidad ha dado en los últimos años?",
-        "opciones": ["Trigo", "Tomate", "Maíz", "Girasol"],
-        "respuesta": "Tomate"
-      }
+      "pregunta": "¿Cual es el cultivo que mayor rentabilidad ha dado en los últimos años?",
+      "opciones": ["Trigo", "Tomate", "Maíz", "Girasol"],
+      "respuesta": "Tomate"
+    }
   ]
   
